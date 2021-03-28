@@ -6,7 +6,7 @@
 /*   By: sohan <sohan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 00:46:49 by sohan             #+#    #+#             */
-/*   Updated: 2021/03/27 04:42:53 by sohan            ###   ########.fr       */
+/*   Updated: 2021/03/28 02:42:17 by sohan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,40 @@
 
 void	ft_print_comb(void)
 {
-	char dgit1;
-	char dgit2;
-	char dgit3;
-	char dgit2_cnt;
-	char dgit3_cnt;
+	char dgit[3];
+	int dgit2_cnt;
+	int dgit3_cnt;
 	
-	dgit1 = '0';
-	dgit2 = '1';
-	dgit3 = '2';
+	dgit[0] = '0';
+	dgit[1] = '1';
+	dgit[2] = '2';
 	dgit2_cnt = '0';
 	dgit3_cnt = '0';
 	
-	//cnt_dgit2 = '0';
-	//cnt_dgit3 = '0'
-	while (dgit1 <= '7')
+	while (dgit[0] <= '7')
 	{
-		while (dgit2 <= '8')
+		while (dgit[1] <= '8')
 		{
-			while (dgit3 <= '9')
+			while (dgit[2] <= '9')
 			{
-				write(1, &dgit1, 1);
-				write(1, &dgit2, 1);
-				write(1, &dgit3, 1);
-				//if (dgit1 != '7' && dgit2 != '8' && dgit3 != '9')
-				//{//
+				write(1, dgit, 3);
+				
+				if (dgit[0] != 7 || dgit[1] != 8 || dgit[2] != 9)
+				{
 				write(1, ", ", 2);
-				//}
-				dgit3 = dgit3 + '1';
-				dgit3_cnt = dgit3_cnt + '1';	
-			}		
-			dgit3 = dgit3 - dgit3_cnt + '1';
+				}
+				dgit[2] = dgit[2] + 1;
+				dgit3_cnt = dgit3_cnt + 1;	
+			}	
+			dgit[2] = dgit[2] - (dgit3_cnt-48) + 1;
 			dgit3_cnt = '0';
-			dgit2 = dgit2 + '1';
-			dgit2_cnt = dgit2_cnt + '1';
+			dgit[1] = dgit[1] + 1;
+			dgit2_cnt = dgit2_cnt + 1;
 		}
-		dgit3 = dgit3 - dgit2_cnt + '1';
-		dgit2 = dgit2 - dgit2_cnt + '1';
+		dgit[2] = dgit[2] - (dgit2_cnt-48) + 1;
+		dgit[1] = dgit[1] - (dgit2_cnt-48) + 1;
 		dgit2_cnt = '0';
-		dgit1 = dgit1 + '1';
+		dgit[0] = dgit[0] + 1;
 	}
 }
 
