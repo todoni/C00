@@ -6,7 +6,7 @@
 /*   By: sohan <sohan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 19:28:54 by sohan             #+#    #+#             */
-/*   Updated: 2021/03/30 23:09:16 by sohan            ###   ########.fr       */
+/*   Updated: 2021/03/30 23:21:56 by sohan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void	display_combn(int *dcomb, int n);
 void	cp_combn(int *tcomb, int *dcomb, int n);
 int	cnt_combn(int *comb, int n);
 
-void	initialize_from_orig(int *icomb, int count, int n)
-{
-	int j;
-
-	j = 0;
-	while (j <= count)
-	{
-		icomb[n - 1 - j] = icomb[n - 1 - j] + 1;
-		j++;
-	}
-}
+//void	initialize_from_orig(int *icomb, int count, int n)
+//{
+//	int j;
+//
+//	j = 0;
+//	while (j <= count)
+//	{
+//		icomb[n - 1 - j] = icomb[n - 1 - j] + 1;
+//		j++;
+//	}
+//}
 
 void	initialize_from_comb(int *icomb, int count, int n)
 {
@@ -57,7 +57,8 @@ void	add_combn(int *acomb, int n)
 	}
 	//printf("I'm Out!\n");
 	count = cnt_combn(acomb, n);
-	if (count == n - 1 || n == 1)
+	//if (count == n - 1 || n == 1)
+	if (n == 1)
 	{
 		return ;
 	}
@@ -112,36 +113,36 @@ int	cnt_combn(int *comb, int n)
 void	ft_print_combn(int n)
 {
 	int comb[n];
-	int orig[n];
-	int count;
+	//int orig[n];
+	//int count;
 	int init;
 
 	init = n;
-	count = 0;
+	//count = 0;
 	while (n--)
 	{
 		comb[n] = n;
-		orig[n] = comb[n];
+		//orig[n] = comb[n];
 	}
 	n = init;
 	display_combn(comb,n);
 	while (comb[0] < 10 - n)
 	{	
 		add_combn(comb, n);
-		count = cnt_combn(comb, n);
-		if (count == n - 1)	
-		{	
-	 		initialize_from_orig(orig, count, n);
-			cp_combn(comb, orig, n);
-			display_combn(comb, n);
-			count = 0;
-		}
+		//count = cnt_combn(comb, n);
+		//if (count == n - 1)	
+		//{	
+	 	//	initialize_from_orig(orig, count, n);
+		//	cp_combn(comb, orig, n);
+		//	display_combn(comb, n);
+		//	count = 0;
+		//}
 	}
 	return ;
 }
 int	main(void)
 {
-	ft_print_combn(9);
+	ft_print_combn(1);
 	printf("number of combination:%d",test);
 	return 0;
 }
